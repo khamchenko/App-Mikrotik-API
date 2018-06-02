@@ -1,0 +1,21 @@
+.header-root {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 99;
+    left: 220px;
+    height: 60px;
+    color: #fff;
+    display: flex;
+    background: #00b4ea;
+    .logo {
+        width: 400px;
+        height: 100px;
+    }
+    .title {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

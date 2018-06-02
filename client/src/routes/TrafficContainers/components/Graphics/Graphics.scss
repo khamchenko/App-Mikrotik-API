@@ -1,0 +1,13 @@
+.root-graphics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .wrapper-graphics {
+        width: 290px;
+        margin: 10px 0;
+    }
+    .wrapper-graphics-full {
+        width: calc(50% - 10px);
+        margin: 10px 0;
+    }
+}

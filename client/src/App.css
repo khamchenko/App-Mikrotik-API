@@ -1,0 +1,60 @@
+@import url(https://fonts.googleapis.com/css?family=Caveat|Roboto);
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: Roboto,sans-serif;
+    background: #e2f1ff;
+    margin: 0;
+}
+
+#root {
+    min-width: 340px;
+}
+
+button:focus{ outline: none;}
+
+input[type="text"]:focus { }
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+textarea{
+    border: none;
+    resize: none;
+    overflow: auto;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 0px;
+border-radius: 0px;
+background-color:#24272a;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#56999f;
+}
+
+::-webkit-resizer{
+background-image:url('');
+background-repeat:no-repeat;
+width: 2px;
+height: 0px
+}
+
+::-webkit-scrollbar{
+width: 2px;
+height: 3px;
+}
+
+.root-content {
+    width: calc(100% - 220px);
+    position: relative;
+    left: 220px;
+    top: 60px;
+}
