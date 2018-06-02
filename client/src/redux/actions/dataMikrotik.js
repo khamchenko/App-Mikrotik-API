@@ -13,10 +13,3 @@ export const ListInterface = (Interface) => dispatch => {
         payload: Interface,
     })
 };
-
-export const TrafficInterface = (Interface) => dispatch => {
-    dispatch({
-        type: constants.LOAD_TRAFFIC,
-        payload: Interface,
-    })
-};

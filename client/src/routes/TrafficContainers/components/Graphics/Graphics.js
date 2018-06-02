@@ -4,39 +4,212 @@ import ReactHighstock from 'react-highcharts/ReactHighstock.src';
 
 import './Graphics.scss';
 
+let config = {
+    colors: ['#2f7ed8', '#910000'],
+    rangeSelector: {
+       buttons: [],
+       inputEnabled: false,
+       selected: 0
+    },
+    yAxis: {
+        title: {
+            text: 'Throughput, (Kbps)'
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    chart: {
+        height: 300
+    },
+    title: {
+        text: ''
+    },
+    series: [
+        {
+            name: 'RX',
+            data: [],
+            type: 'spline',
+            tooltip: {
+                valueDecimals: 1,
+                valueSuffix: 'Kbps'
+            }
+        },
+        {
+            name: 'TX',
+            data: [],
+            type: 'spline',
+            tooltip: {
+                valueDecimals: 1,
+                valueSuffix: 'Kbps'
+            }
+        }
+    ]
+};
+
 class Graphics extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            config: config,
+            ['eth1-wan']: { rx: [], tx: []},
+            ['eth2']: { rx: [], tx: []},
+            ['eth3']: { rx: [], tx: []},
+            ['eth4']: { rx: [], tx: []},
+            ['eth5-master']: {rx: [], tx: []},
+            ['bridge1']:{ rx: [], tx: []},
+        }
+    }
+    componentWillReceiveProps() {
+        _.forEach(this.props.Interface, (elem) => {
+            if (this.state[elem.name].rx.length > 50) {
+                this.setState({
+                    [elem.name]: {
+                        rx: [ ...this.state[elem.name].rx.slice(1), [Number(elem.date), Number(elem.rx)]],
+                        tx:  [ ...this.state[elem.name].tx.slice(1), [Number(elem.date), Number(elem.tx)]],
+                    }
+                })
+            } else {
+                this.setState({
+                    [elem.name]: {
+                        rx: [ ...this.state[elem.name].rx, [Number(elem.date), Number(elem.rx)]],
+                        tx:  [ ...this.state[elem.name].tx, [Number(elem.date), Number(elem.tx)]],
+                    }
+                })
+            }
+        })
+    }
     render() {
-        const { traffic } = this.props;
+        const { Interface } = this.props;
         return (
             <div className="root-graphics">
                 {
-                    traffic['eth1-wan'] && <div className="wrapper-graphics-full">
-                        <ReactHighstock  config={traffic['eth1-wan']}/>
+                    <div className="wrapper-graphics-full">
+                        <ReactHighstock
+                            config={
+                                {
+                                    ...config,
+                                    series: [
+                                        {
+                                            ...config.series[0],
+                                            data: this.state['eth1-wan'].rx
+                                        },
+                                        {
+                                            ...config.series[1],
+                                            data: this.state['eth1-wan'].tx
+                                        },
+                                    ]
+                                }
+                            }
+                        />
                     </div>
                 }
                 {
-                    traffic.bridge1 && <div className="wrapper-graphics-full">
-                        <ReactHighstock  config={traffic.bridge1}/>
+                    <div className="wrapper-graphics-full">
+                        <ReactHighstock
+                            config={
+                                {
+                                    ...config,
+                                    series: [
+                                        {
+                                            ...config.series[0],
+                                            data: this.state['bridge1'].rx
+                                        },
+                                        {
+                                            ...config.series[1],
+                                            data:  this.state['bridge1'].tx
+                                        },
+                                    ]
+                                }
+                            }
+                        />
                     </div>
                 }
                 {
-                    traffic.eth2 && <div className="wrapper-graphics">
-                        <ReactHighstock  config={traffic.eth2}/>
+                    <div className="wrapper-graphics">
+                        <ReactHighstock
+                            config={
+                                {
+                                    ...config,
+                                    series: [
+                                        {
+                                            ...config.series[0],
+                                            data: this.state['eth2'].rx
+                                        },
+                                        {
+                                            ...config.series[1],
+                                            data: this.state['eth2'].tx
+                                        },
+                                    ]
+                                }
+                            }
+                        />
                     </div>
                 }
                 {
-                    traffic.eth3 && <div className="wrapper-graphics">
-                        <ReactHighstock  config={traffic.eth3}/>
+                    <div className="wrapper-graphics">
+                        <ReactHighstock
+                            config={
+                                {
+                                    ...config,
+                                    series: [
+                                        {
+                                            ...config.series[0],
+                                            data:  this.state['eth3'].rx
+                                        },
+                                        {
+                                            ...config.series[1],
+                                            data:  this.state['eth3'].tx
+                                        },
+                                    ]
+                                }
+                            }
+                        />
                     </div>
                 }
                 {
-                    traffic.eth4 && <div className="wrapper-graphics">
-                        <ReactHighstock  config={traffic.eth4}/>
+                    <div className="wrapper-graphics">
+                        <ReactHighstock
+                            config={
+                                {
+                                    ...config,
+                                    series: [
+                                        {
+                                            ...config.series[0],
+                                            data:  this.state['eth4'].rx
+                                        },
+                                        {
+                                            ...config.series[1],
+                                            data:  this.state['eth4'].tx
+                                        },
+                                    ]
+                                }
+                            }
+                        />
                     </div>
                 }
                 {
-                    traffic['eth5-master'] && <div className="wrapper-graphics">
-                        <ReactHighstock  config={traffic['eth5-master']}/>
+                    <div className="wrapper-graphics">
+                        <ReactHighstock
+                            config={
+                                {
+                                    ...config,
+                                    series: [
+                                        {
+                                            ...config.series[0],
+                                            data:  this.state['eth5-master'].rx
+                                        },
+                                        {
+                                            ...config.series[1],
+                                            data: this.state['eth5-master'].tx
+                                        },
+                                    ]
+                                }
+                            }
+                        />
                     </div>
                 }
             </div>

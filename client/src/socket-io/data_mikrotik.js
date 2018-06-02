@@ -11,6 +11,5 @@ export const getDevices = () => dispatch => {
 export const getInterface = () => dispatch => {
     socket.on('get_Interface', (Interface) => {
         dispatch(ListInterface(Interface));
-        dispatch(TrafficInterface(Interface));
     });
 };
