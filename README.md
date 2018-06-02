@@ -1,4 +1,4 @@
-# React Test task API Vulners
+# React App-Mikrotik-API
 
 ## Getting started
 ```sh
@@ -8,7 +8,8 @@ npm install
 
 ```sh
 # Run dev server
-npm start
+npm run server
+npm run dev
 ```
 
 ```sh
