@@ -92,6 +92,9 @@ class Graphics extends Component {
                             config={
                                 {
                                     ...config,
+                                    title: {
+                                        text: 'eth1-wan'
+                                    },
                                     series: [
                                         {
                                             ...config.series[0],
@@ -113,6 +116,9 @@ class Graphics extends Component {
                             config={
                                 {
                                     ...config,
+                                    title: {
+                                        text: 'bridge1'
+                                    },
                                     series: [
                                         {
                                             ...config.series[0],
@@ -134,6 +140,9 @@ class Graphics extends Component {
                             config={
                                 {
                                     ...config,
+                                    title: {
+                                        text: 'eth2'
+                                    },
                                     series: [
                                         {
                                             ...config.series[0],
@@ -155,6 +164,9 @@ class Graphics extends Component {
                             config={
                                 {
                                     ...config,
+                                    title: {
+                                        text: 'eth3'
+                                    },
                                     series: [
                                         {
                                             ...config.series[0],
@@ -176,6 +188,9 @@ class Graphics extends Component {
                             config={
                                 {
                                     ...config,
+                                    title: {
+                                        text: 'eth4'
+                                    },
                                     series: [
                                         {
                                             ...config.series[0],
@@ -197,6 +212,9 @@ class Graphics extends Component {
                             config={
                                 {
                                     ...config,
+                                    title: {
+                                        text: 'eth5-master'
+                                    },
                                     series: [
                                         {
                                             ...config.series[0],
